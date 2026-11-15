@@ -149,11 +149,10 @@ html{scroll-behavior:smooth}
 <p style="margin: 20px 0 0; font-family: Jost, sans-serif; font-weight: 300; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.2; letter-spacing: .06em; text-transform: uppercase">Send us a site</p>
 <p style="margin: 20px 0 0; color: #33414D; max-width: 440px">Share the address and where the project stands. You'll hear back within one business day with scope and a flat-fee quote.</p>
 </div>
-<form id="inquiry" action="https://api.web3forms.com/submit" method="POST" style="flex: 1.4 1 480px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 24px; font-family: Jost, sans-serif; font-size: 15px">
-<input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY">
-<input type="hidden" name="subject" value="New site inquiry from halorien.com">
-<input type="hidden" name="from_name" value="Halorien website">
-<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display: none">
+<form id="inquiry" action="https://formsubmit.co/ajax/poreah@halorien.com" method="POST" style="flex: 1.4 1 480px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 24px; font-family: Jost, sans-serif; font-size: 15px">
+<input type="hidden" name="_subject" value="New site inquiry from halorien.com">
+<input type="hidden" name="_template" value="table">
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display: none">
 <label style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #33414D">Name<input type="text" name="name" required autocomplete="name" style="min-height: 48px; padding: 0 14px; border: 1px solid #A9B3BE; background: #FFFFFF; font-size: 16px; letter-spacing: 0; text-transform: none; color: #0A1322"></label>
 <label style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #33414D">Company<input type="text" name="company" autocomplete="organization" style="min-height: 48px; padding: 0 14px; border: 1px solid #A9B3BE; background: #FFFFFF; font-size: 16px; letter-spacing: 0; text-transform: none; color: #0A1322"></label>
 <label style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #33414D">Email<input type="email" name="email" required autocomplete="email" style="min-height: 48px; padding: 0 14px; border: 1px solid #A9B3BE; background: #FFFFFF; font-size: 16px; letter-spacing: 0; text-transform: none; color: #0A1322"></label>
@@ -186,9 +185,9 @@ var f=document.getElementById('inquiry'),st=document.getElementById('form-status
 f.addEventListener('submit',function(e){
 e.preventDefault();
 btn.disabled=true;st.textContent='Sending…';
-var data=new FormData(f);data.set('replyto',data.get('email')||'');
-fetch(f.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
-.then(function(r){return r.json().then(function(j){return {ok:r.ok&&j.success,j:j}})})
+var data=Object.fromEntries(new FormData(f).entries());data._replyto=data.email||'';
+fetch(f.action,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'application/json','Accept':'application/json'}})
+.then(function(r){return r.json().then(function(j){return {ok:r.ok&&(j.success===true||j.success==='true'),j:j}})})
 .then(function(res){if(res.ok){f.reset();st.textContent='Thank you. Your inquiry is in, and you will hear back within one business day.';}else{throw new Error(res.j&&res.j.message)}})
 .catch(function(){st.textContent='Something went wrong sending your inquiry. Please try again in a moment.';})
 .finally(function(){btn.disabled=false;});
