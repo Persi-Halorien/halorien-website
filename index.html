@@ -353,7 +353,7 @@ window.addEventListener('resize',frame);frame();
 // reveal
 var els=[].slice.call(document.querySelectorAll('[data-reveal]'));
 if('IntersectionObserver' in window&&!reduce){
- var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var sib=[].slice.call(e.target.parentElement.querySelectorAll(':scope > [data-reveal]'));var i=Math.max(0,sib.indexOf(e.target));e.target.style.transitionDelay=(i*0.09)+'s';e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.15,rootMargin:'0px 0px -6% 0px'});
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){var t=e.target;if(e.isIntersecting&&e.intersectionRatio>=0.15){var sib=[].slice.call(t.parentElement.querySelectorAll(':scope > [data-reveal]'));var i=Math.max(0,sib.indexOf(t));t.style.transitionDelay=(i*0.09)+'s';t.classList.add('in');}else if(!e.isIntersecting){t.style.transitionDelay='0s';t.classList.remove('in');}})},{threshold:[0,0.15]});
  els.forEach(function(el){io.observe(el)});
 }else{els.forEach(function(el){el.classList.add('in')})}
 // lazy videos: load when near, play only while visible
@@ -368,7 +368,7 @@ var trick=[].slice.call(document.querySelectorAll('.trickle'));
 var tl=document.querySelector('.timeline'),tlFill=tl&&tl.querySelector('.fill'),phases=tl?[].slice.call(tl.querySelectorAll('.phase')):[];
 function scrollFx(){
  var h=window.innerHeight;
- trick.forEach(function(el,i){var r=el.getBoundingClientRect();var stacked=r.left<200&&window.innerWidth<900;var line=stacked?h*0.88:h*(0.92-i*0.14);if(reduce||r.top<line){el.classList.add('in')}});
+ trick.forEach(function(el,i){var r=el.getBoundingClientRect();var stacked=r.left<200&&window.innerWidth<900;var line=stacked?h*0.88:h*(0.92-i*0.14);var show=reduce||(r.top<line&&r.bottom>h*(0.06+i*0.08));el.classList.toggle('in',show)});
  if(tl){var r=tl.getBoundingClientRect();var p=Math.min(1,Math.max(0,(h*0.62-r.top)/r.height));tlFill.style.transform='scaleY('+(reduce?1:p)+')';var y=h*0.62;phases.forEach(function(ph){ph.classList.toggle('lit',reduce||ph.getBoundingClientRect().top<y)});}
 }
 window.addEventListener('scroll',function(){requestAnimationFrame(scrollFx)},{passive:true});
