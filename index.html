@@ -34,6 +34,26 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
 #design article.lift:hover{box-shadow:0 18px 40px rgba(0,0,0,.35);border-color:#D9AD47!important}
 #hero-copy{will-change:transform,opacity}
 .parallax,#hero-video{will-change:transform}
+
+.trickle{opacity:0;transform:translateY(46px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.trickle.in{opacity:1;transform:none}
+.trickle span:first-child{display:inline-block;transition:color .6s ease}
+.more{margin-top:auto;padding-top:10px;font-family:Jost,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#0A1322;text-decoration:none;display:inline-flex;gap:10px;align-items:center;min-height:44px}
+.more::after{content:"";width:22px;height:1px;background:#8A6A1F;transition:width .35s ease}
+.more:hover::after{width:40px}
+.btn-dark{display:inline-flex;align-items:center;min-height:48px;margin-top:28px;padding:0 24px;background:#0A1322;color:#EEF1F6!important;text-decoration:none;font-family:Jost,sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+@media (min-width:900px){.stick{position:sticky;top:120px}}
+.timeline .track{position:absolute;left:11px;top:14px;bottom:44px;width:1px;background:#D3D7DC}
+.timeline .fill{position:absolute;left:0;top:0;width:1px;height:100%;background:#D9AD47;transform-origin:0 0;transform:scaleY(0)}
+.phase .dot{position:absolute;left:4px;top:4px;width:15px;height:15px;border-radius:50%;background:#FFFFFF;border:1px solid #A9B3BE;transition:background .4s ease,border-color .4s ease,box-shadow .4s ease}
+.phase.lit .dot{background:#D9AD47;border-color:#D9AD47;box-shadow:0 0 0 6px rgba(217,173,71,.18)}
+.ring{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid #0A1322;display:flex;align-items:center;justify-content:center;font-family:Jost,sans-serif;font-weight:300;font-size:16px;transition:background .5s ease,color .5s ease,border-color .5s ease}
+.tstep.in .ring{background:#0A1322;color:#F2C14E}
+.conn{flex:1;height:1px;background:#0A1322;transform-origin:0 50%;transform:scaleX(0);transition:transform 1.1s cubic-bezier(.2,.7,.2,1) .25s}
+.tstep.in .conn{transform:scaleX(1)}
+.tstep:last-child .conn{display:none}
+@media (min-width:760px){.oneline{white-space:nowrap}}
+@media (prefers-reduced-motion:reduce){.trickle{opacity:1!important;transform:none!important}.timeline .fill{transform:scaleY(1)!important}.conn{transform:scaleX(1)!important}}
 @media (max-width:760px){#site-header nav{gap:4px 18px!important}#site-header nav a{font-size:11px!important}}
 @media (prefers-reduced-motion:reduce){[data-reveal]{opacity:1!important;transform:none!important;transition:none!important}.lift,.lift:hover{transform:none!important}}
 
@@ -52,9 +72,9 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
 <span style="font-family: Jost, sans-serif; font-weight: 400; font-size: 12px; letter-spacing: .32em; color: #E4E9EE">ENERGY</span>
 </a>
 <nav aria-label="Primary" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; font-family: Jost, sans-serif; font-weight: 400; font-size: 12px; letter-spacing: .2em; text-transform: uppercase">
-<a href="#services" class="navlink" style="text-decoration: none; padding: 12px 0; color: #EEF1F6">What we do</a>
+<a href="#executive" class="navlink" style="text-decoration: none; padding: 12px 0; color: #EEF1F6">Executive</a>
 <a href="#design" class="navlink" style="text-decoration: none; padding: 12px 0; color: #EEF1F6">Design</a>
-<a href="#serve" class="navlink" style="text-decoration: none; padding: 12px 0; color: #EEF1F6">Who we serve</a>
+<a href="#transactions" class="navlink" style="text-decoration: none; padding: 12px 0; color: #EEF1F6">Transactions</a>
 <a href="#contact" style="text-decoration: none; padding: 13px 20px; background: #D9AD47; color: #0A1322">Contact us</a>
 </nav>
 </div>
@@ -89,22 +109,66 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
 <h2 data-reveal style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: #8A6A1F">What we do</h2>
 <p data-reveal style="margin: 20px 0 0; font-family: Jost, sans-serif; font-weight: 300; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.2; max-width: 900px; letter-spacing: .06em; text-transform: uppercase">We step in where projects stall: pre-construction, contracts, design, and delivery.</p>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 48px; margin-top: 72px">
-<article data-reveal class="lift" style="border-top: 1px solid #0A1322; padding: 28px 0 8px; display: flex; flex-direction: column; gap: 14px">
+<article class="lift trickle" style="border-top: 1px solid #0A1322; padding: 28px 0 8px; display: flex; flex-direction: column; gap: 14px">
 <span style="font-family: Jost, sans-serif; font-weight: 300; font-size: 44px; line-height: 1; color: #8A6A1F">01</span>
 <h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase">Project Executive</h3>
-<p data-reveal style="margin: 0; color: #33414D">Senior ownership from pre-construction to energization: budgets, EPC and vendor contracts, permitting and interconnection oversight, construction through COD.</p>
+<p style="margin: 0; color: #33414D">Senior ownership from pre-construction to energization: budgets, EPC and vendor contracts, permitting and interconnection oversight, construction through COD.</p>
+<a href="#executive" class="more">Project Executive services</a>
 </article>
-<article data-reveal class="lift" style="border-top: 1px solid #0A1322; padding: 28px 0 8px; display: flex; flex-direction: column; gap: 14px">
+<article class="lift trickle" style="border-top: 1px solid #0A1322; padding: 28px 0 8px; display: flex; flex-direction: column; gap: 14px">
 <span style="font-family: Jost, sans-serif; font-weight: 300; font-size: 44px; line-height: 1; color: #8A6A1F">02</span>
 <h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase">Solar Design</h3>
-<p data-reveal style="margin: 0; color: #33414D">Proposal-grade preliminary design at a flat fee, built on our proprietary design platform. Layouts in 48 hours, 10% packages in one week.</p>
+<p style="margin: 0; color: #33414D">Proposal-grade preliminary design at a flat fee, built on our proprietary design platform. Layouts in 48 hours, 10% packages in one week.</p>
+<a href="#design" class="more">Design packages</a>
 </article>
-<article data-reveal class="lift" style="border-top: 1px solid #0A1322; padding: 28px 0 8px; display: flex; flex-direction: column; gap: 14px">
+<article class="lift trickle" style="border-top: 1px solid #0A1322; padding: 28px 0 8px; display: flex; flex-direction: column; gap: 14px">
 <span style="font-family: Jost, sans-serif; font-weight: 300; font-size: 44px; line-height: 1; color: #8A6A1F">03</span>
 <h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase">Project Transactions</h3>
-<p data-reveal style="margin: 0; color: #33414D">We connect sellers and buyers of development-stage solar and storage projects, from packaging and diligence through handoff.</p>
+<p style="margin: 0; color: #33414D">We connect sellers and buyers of development-stage solar and storage projects, from packaging and diligence through handoff.</p>
+<a href="#transactions" class="more">Transaction services</a>
 </article>
 </div>
+</div>
+</section>
+
+<section id="executive" style="background: #FFFFFF">
+<div style="max-width: 1320px; margin: 0 auto; padding: 120px 40px; display: flex; flex-wrap: wrap; gap: 64px">
+<div style="flex: 1 1 380px; min-width: 0">
+<div class="stick">
+<h2 data-reveal style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: #8A6A1F">Project Executive</h2>
+<p data-reveal style="margin: 20px 0 0; font-family: Jost, sans-serif; font-weight: 300; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.2; max-width: 900px; letter-spacing: .06em; text-transform: uppercase">Your owner's rep, from pre-construction to COD.</p>
+<p data-reveal style="margin: 24px 0 0; color: #33414D; max-width: 460px">Independent senior oversight for commercial solar and battery storage projects. We protect schedule, budget and contract terms so your team can keep developing.</p>
+<p data-reveal style="margin: 28px 0 0; font-family: Jost, sans-serif; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: #4A5763">Fixed scope or retained</p>
+<a data-reveal href="#contact" class="btn-dark">Discuss a project</a>
+</div>
+</div>
+<ol class="timeline" style="flex: 1.3 1 460px; min-width: 0; list-style: none; margin: 0; padding: 8px 0 0; position: relative">
+<span class="track" aria-hidden="true"><span class="fill"></span></span>
+<li class="phase" data-reveal style="position: relative; padding: 0 0 44px 56px">
+<span class="dot" aria-hidden="true"></span>
+<span style="font-family: Jost, sans-serif; font-weight: 300; font-size: 14px; letter-spacing: .2em; color: #8A6A1F">01</span>
+<h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase; margin-top: 6px">Pre-construction</h3>
+<p style="margin: 8px 0 0; color: #33414D; max-width: 520px">Budget, schedule and constructability review. EPC and vendor bids leveled so you compare like for like.</p>
+</li>
+<li class="phase" data-reveal style="position: relative; padding: 0 0 44px 56px">
+<span class="dot" aria-hidden="true"></span>
+<span style="font-family: Jost, sans-serif; font-weight: 300; font-size: 14px; letter-spacing: .2em; color: #8A6A1F">02</span>
+<h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase; margin-top: 6px">Contracts</h3>
+<p style="margin: 8px 0 0; color: #33414D; max-width: 520px">EPC, equipment and vendor contracts negotiated: scope, warranties, liquidated damages and payment terms.</p>
+</li>
+<li class="phase" data-reveal style="position: relative; padding: 0 0 44px 56px">
+<span class="dot" aria-hidden="true"></span>
+<span style="font-family: Jost, sans-serif; font-weight: 300; font-size: 14px; letter-spacing: .2em; color: #8A6A1F">03</span>
+<h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase; margin-top: 6px">Permitting &amp; interconnection</h3>
+<p style="margin: 8px 0 0; color: #33414D; max-width: 520px">Utility and permitting milestones tracked weekly. Blockers surfaced and resolved before they cost schedule.</p>
+</li>
+<li class="phase" data-reveal style="position: relative; padding: 0 0 44px 56px">
+<span class="dot" aria-hidden="true"></span>
+<span style="font-family: Jost, sans-serif; font-weight: 300; font-size: 14px; letter-spacing: .2em; color: #8A6A1F">04</span>
+<h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase; margin-top: 6px">Construction to COD</h3>
+<p style="margin: 8px 0 0; color: #33414D; max-width: 520px">Site oversight, change-order control, commissioning and closeout through commercial operation.</p>
+</li>
+</ol>
 </div>
 </section>
 
@@ -160,10 +224,50 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
 </div>
 </section>
 
-<section id="serve" style="background: #F4F3EF">
+<section id="transactions" style="background: #F4F3EF">
+<div style="max-width: 1320px; margin: 0 auto; padding: 120px 40px">
+<h2 data-reveal style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: #8A6A1F">Project Transactions</h2>
+<p data-reveal style="margin: 20px 0 0; font-family: Jost, sans-serif; font-weight: 300; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.2; max-width: 900px; letter-spacing: .06em; text-transform: uppercase">Development-stage projects, matched to the right buyer.</p>
+<p data-reveal style="margin: 24px 0 0; color: #33414D; max-width: 620px">We connect sellers and buyers of commercial solar and battery storage projects and keep the deal moving from first look to handoff.</p>
+<div class="tsteps" style="display: flex; flex-wrap: wrap; gap: 32px; margin-top: 64px">
+<div class="tstep" data-reveal style="flex: 1 1 200px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 14px"><span class="ring">1</span><span class="conn" aria-hidden="true"></span></div>
+<h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase; margin-top: 18px">Package</h3>
+<p style="margin: 8px 0 0; color: #33414D">Site control, interconnection status, permitting and model inputs assembled for buyer review.</p>
+</div>
+<div class="tstep" data-reveal style="flex: 1 1 200px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 14px"><span class="ring">2</span><span class="conn" aria-hidden="true"></span></div>
+<h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase; margin-top: 18px">Introduce</h3>
+<p style="margin: 8px 0 0; color: #33414D">Targeted introductions to qualified buyers whose criteria fit the project.</p>
+</div>
+<div class="tstep" data-reveal style="flex: 1 1 200px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 14px"><span class="ring">3</span><span class="conn" aria-hidden="true"></span></div>
+<h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase; margin-top: 18px">Diligence</h3>
+<p style="margin: 8px 0 0; color: #33414D">Data requests and open items coordinated so diligence keeps moving.</p>
+</div>
+<div class="tstep" data-reveal style="flex: 1 1 200px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 14px"><span class="ring">4</span><span class="conn" aria-hidden="true"></span></div>
+<h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase; margin-top: 18px">Close</h3>
+<p style="margin: 8px 0 0; color: #33414D">Handoff managed through close, with development completion available after.</p>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 32px; margin-top: 72px">
+<div data-reveal class="lift" style="flex: 1 1 380px; min-width: 0; border: 1px solid #C9CED4; background: #FFFFFF; padding: 40px">
+<h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase">For sellers</h3>
+<ul style="margin: 20px 0 0; padding-left: 20px; color: #33414D; display: flex; flex-direction: column; gap: 10px"><li>Project packaged to buyer standards before it goes out</li><li>Introductions only to buyers with a real fit</li><li>One point of contact through diligence and close</li></ul>
+</div>
+<div data-reveal class="lift" style="flex: 1 1 380px; min-width: 0; border: 1px solid #C9CED4; background: #FFFFFF; padding: 40px">
+<h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 17px; letter-spacing: .18em; text-transform: uppercase">For buyers</h3>
+<ul style="margin: 20px 0 0; padding-left: 20px; color: #33414D; display: flex; flex-direction: column; gap: 10px"><li>Vetted C&amp;I solar and BESS projects</li><li>Clear status and risk summary up front</li><li>Option to have us finish development after acquisition</li></ul>
+</div>
+</div>
+</div>
+</section>
+
+<section id="serve" style="background: #FFFFFF">
 <div style="max-width: 1320px; margin: 0 auto; padding: 120px 40px">
 <h2 data-reveal style="margin: 0; font-family: Jost, sans-serif; font-weight: 400; font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: #8A6A1F">Who we serve</h2>
-<p data-reveal style="margin: 20px 0 0; font-family: Jost, sans-serif; font-weight: 300; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.2; max-width: 900px; letter-spacing: .06em; text-transform: uppercase">Senior capacity without a senior hire.</p>
+<p data-reveal class="oneline" style="margin: 20px 0 0; font-family: Jost, sans-serif; font-weight: 300; font-size: clamp(1.3rem, 2.9vw, 2.6rem); line-height: 1.2; letter-spacing: .06em; text-transform: uppercase">Senior capacity without a senior hire.</p>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 40px; margin-top: 64px">
 <div data-reveal class="lift" style="border-top: 1px solid #0A1322; padding: 24px 0"><h3 style="margin: 0 0 10px; font-family: Jost, sans-serif; font-weight: 400; font-size: 15px; letter-spacing: .18em; text-transform: uppercase">EPCs</h3><p data-reveal style="margin: 0; color: #33414D">Design overflow and project leadership when the pipeline outruns your team.</p></div>
 <div data-reveal class="lift" style="border-top: 1px solid #0A1322; padding: 24px 0"><h3 style="margin: 0 0 10px; font-family: Jost, sans-serif; font-weight: 400; font-size: 15px; letter-spacing: .18em; text-transform: uppercase">IPPs</h3><p data-reveal style="margin: 0; color: #33414D">An owner's rep who protects schedule, budget and contract terms.</p></div>
@@ -187,7 +291,7 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
 <label style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #33414D">Name<input type="text" name="name" required autocomplete="name" style="min-height: 48px; padding: 0 14px; border: 1px solid #A9B3BE; background: #FFFFFF; font-size: 16px; letter-spacing: 0; text-transform: none; color: #0A1322"></label>
 <label style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #33414D">Company<input type="text" name="company" autocomplete="organization" style="min-height: 48px; padding: 0 14px; border: 1px solid #A9B3BE; background: #FFFFFF; font-size: 16px; letter-spacing: 0; text-transform: none; color: #0A1322"></label>
 <label style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #33414D">Email<input type="email" name="email" required autocomplete="email" style="min-height: 48px; padding: 0 14px; border: 1px solid #A9B3BE; background: #FFFFFF; font-size: 16px; letter-spacing: 0; text-transform: none; color: #0A1322"></label>
-<label style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #33414D">Service<select name="service" style="min-height: 48px; padding: 0 12px; border: 1px solid #A9B3BE; background: #FFFFFF; font-size: 16px; letter-spacing: 0; text-transform: none; color: #0A1322"><option>Layout &amp; Production</option><option>10% Design Package</option><option>Project Executive</option><option>Project Transactions</option></select></label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #33414D">Service<select name="service" style="min-height: 48px; padding: 0 12px; border: 1px solid #A9B3BE; background: #FFFFFF; font-size: 16px; letter-spacing: 0; text-transform: none; color: #0A1322"><option>Layout &amp; Production</option><option>10% Design Package</option><option>Project Executive</option><option>Project Transactions</option><option>Other</option></select></label>
 <label style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 8px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #33414D">Site address<input type="text" name="site" required style="min-height: 48px; padding: 0 14px; border: 1px solid #A9B3BE; background: #FFFFFF; font-size: 16px; letter-spacing: 0; text-transform: none; color: #0A1322"></label>
 <label style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 8px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #33414D">Project notes<textarea name="notes" rows="4" style="padding: 12px 14px; border: 1px solid #A9B3BE; background: #FFFFFF; font-size: 16px; letter-spacing: 0; text-transform: none; color: #0A1322; resize: vertical"></textarea></label>
 <div style="grid-column: 1 / -1"><button type="submit" style="display: inline-flex; align-items: center; gap: 12px; min-height: 50px; padding: 0 28px; border: 0; background: #0A1322; color: #EEF1F6; font-family: Jost, sans-serif; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; cursor: pointer">Submit inquiry</button><p id="form-status" role="status" aria-live="polite" style="margin: 16px 0 0; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 19px; letter-spacing: 0; text-transform: none; color: #33414D"></p></div>
@@ -200,7 +304,9 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
 <img src="assets/lockup.png" alt="Halorien Energy" style="height: 84px; width: auto">
 <nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 8px 28px; font-family: Jost, sans-serif; font-size: 12px; letter-spacing: .18em; text-transform: uppercase">
 <a href="#services" style="color: #DCE3EC; text-decoration: none; padding: 10px 0">What we do</a>
+<a href="#executive" style="color: #DCE3EC; text-decoration: none; padding: 10px 0">Executive</a>
 <a href="#design" style="color: #DCE3EC; text-decoration: none; padding: 10px 0">Design</a>
+<a href="#transactions" style="color: #DCE3EC; text-decoration: none; padding: 10px 0">Transactions</a>
 <a href="#serve" style="color: #DCE3EC; text-decoration: none; padding: 10px 0">Who we serve</a>
 <a href="#contact" style="color: #DCE3EC; text-decoration: none; padding: 10px 0">Contact</a>
 </nav>
@@ -255,6 +361,17 @@ if('IntersectionObserver' in window){
  var vo=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v.src){v.src=v.dataset.src}if(!reduce){var p=v.play();if(p&&p.catch)p.catch(function(){})}}else{v.pause()}})},{rootMargin:'200px 0px'});
  vids.forEach(function(v){vo.observe(v)});
 }else{vids.forEach(function(v){v.src=v.dataset.src})}
+
+// trickle 01-03 tied to scroll position
+var trick=[].slice.call(document.querySelectorAll('.trickle'));
+var tl=document.querySelector('.timeline'),tlFill=tl&&tl.querySelector('.fill'),phases=tl?[].slice.call(tl.querySelectorAll('.phase')):[];
+function scrollFx(){
+ var h=window.innerHeight;
+ trick.forEach(function(el,i){var r=el.getBoundingClientRect();var stacked=r.left<200&&window.innerWidth<900;var line=stacked?h*0.88:h*(0.92-i*0.14);if(reduce||r.top<line){el.classList.add('in')}});
+ if(tl){var r=tl.getBoundingClientRect();var p=Math.min(1,Math.max(0,(h*0.62-r.top)/r.height));tlFill.style.transform='scaleY('+(reduce?1:p)+')';var y=h*0.62;phases.forEach(function(ph){ph.classList.toggle('lit',reduce||ph.getBoundingClientRect().top<y)});}
+}
+window.addEventListener('scroll',function(){requestAnimationFrame(scrollFx)},{passive:true});
+window.addEventListener('resize',scrollFx);scrollFx();
 // active nav
 var links=[].slice.call(document.querySelectorAll('.navlink'));
 var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);
